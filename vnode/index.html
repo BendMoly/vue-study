@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue_静态页面渲染</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li id="test">{{ name }}</li>
+      <li class="hahaha">{{desc}}</li>
+      <li>staticNode</li>
+      <li>}} nothing to do at this node {{</li>
+      <li>{{ obj.item }}</li>
+    </ul>
+  </div>
+  
+  <script src="./bundle.js"></script>
+  <script src="./vnode.js"></script>
+  <script src="./index_1.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'Harry Poter',
+        desc: 'hello world',
+        obj: {
+          item: 'this is an item in obj'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "vue-study",
+  "version": "1.0.0",
+  "description": "vue源码学习笔记",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BendMoly/vue-study.git"
+  },
+  "author": "molychn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BendMoly/vue-study/issues"
+  },
+  "homepage": "https://github.com/BendMoly/vue-study#readme",
+  "dependencies": {
+    "htmlparser": "^1.7.7"
+  }
+}
