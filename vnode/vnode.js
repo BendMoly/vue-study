@@ -1,4 +1,29 @@
+/**
+ * @name VNode 转化ast树上的虚拟节点
+ * @param { object } ast [ast树]
+ * @param { node } parent [父节点]
+ * @param { object } data [vue实例数据列表]
+ */
 class VNode {
+  constructor(ast={}, parent, data){
+    this.ast = ast;
+    this.parent = parent;
+    this.elm = document.createElement('div');
+    this.$data = data;
+    
+    this.init();
+  }
+
+  init(){
+    Object.keys(this.ast).forEach(key => {
+      new VDom(this.ast[key], this.elm, this.$data)
+    })
+    this.parent.innerHTML = this.elm.innerHTML;
+  }
+  
+}
+
+class VDom {
   constructor(options, parent, data){
     this.attribs = options.attribs ? options.attribs : '';
     this.type = options.type ? options.type : '';
@@ -57,7 +82,7 @@ class VNode {
   }
 
   createChildren(child, vnode){
-    new VNode(child, vnode, this.$data);
+    new VDom(child, vnode, this.$data);
   }
 
   appendChildren(vnode){

@@ -17,9 +17,9 @@
     </ul>
   </div>
   
-  <script src="./bundle.js"></script>
-  <script src="./vnode.js"></script>
-  <script src="./index_1.js"></script>
+  <script src="./vnode/bundle.js"></script>
+  <script src="./vnode/vnode.js"></script>
+  <script src="./vnode/index.js"></script>
   <script>
     const vm = new Vue({
       el: '#app',
@@ -29,7 +29,11 @@
         obj: {
           item: 'this is an item in obj'
         }
-      }
+      },
+      // 生命周期lifecycle beforeCreate created beforeMount mounted beforeUpdate updated beforeDestroy destroyed
+      // 监听watch
+      // 计算computed
+      // 方法methods
     })
   </script>
 </body>

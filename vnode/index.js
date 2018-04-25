@@ -20,9 +20,7 @@ class Vue {
   }
 
   render(ast){
-    Object.keys(ast).forEach(key => {
-      let element = document.querySelector(this.el);
-      new VNode(ast[key], element, this.data);
-    })
+    let element = document.querySelector(this.el);
+    return new VNode(ast, element, this.data);
   }
 }
