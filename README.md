@@ -9,13 +9,15 @@ vue源码学习笔记
 
 #### MVVM模式
 
+> ***vnode***模块用于实现虚拟DOM对数据的渲染，目前整个MVVM模式的实现还欠缺观察者（***observer***）模块监听数据、diff（虚拟节点更新算法）、指令（***directives***）模块
+
 Vue框架中利用此模式，对View（视图层）与Model（模型数据层）做到一个连接效果，相比每次数据更新重新渲染整个Dom节点，利用数据的监听与虚拟节点diff比较实现部分节点更新，性能得到有效提升。
 
 MVVM模式主要关注到的点在于以下要素：
 
 1. 响应式：利用观察者模式监听Model层中数据的变化通知View变动。
 2. 模版引擎：涉及到Vue框架中directives指令的实现，开发过程中主要通过在模版添加指令或数据格式等（v-for、v-model、{{item}})完成一个html模版并解析成JavaScript函数，通过第3点完成整个流程。
-3. 虚拟DOM：模版中的目标节点通过生成ast树，这部分成为虚拟节点。利用ast树与Model层实例数据进行匹配渲染出真正的DOM树。
+3. 虚拟DOM：模版中的目标节点通过生成ast树，这部分成为虚拟节点。利用ast树与Model层实例数据进行匹配渲染出真正的DOM树。
 
 #### 参考链接
 https://github.com/wangfupeng1988/learn-vue2-mvvm
