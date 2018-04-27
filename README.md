@@ -32,7 +32,7 @@ MVVM模式主要关注到的点在于以下要素：
 观察者模式在整个框架中起到一个关键作用，通过对数据的变化进行观察监听及时完成model=>view之间的交互。这里通过computed计算属性的实现来解释观察者模式在框架中的应用。具体文档介绍看```/observer```目录
 
 #### 参考链接
-[深入理解 Vue Computed 计算属性 —segmentFault](https://segmentfault.com/a/1190000010408657)
+[深入理解 Vue Computed 计算属性 —segmentFault](https://segmentfault.com/a/1190000010408657)  
 [深入响应式原理 —cn.vuejs.org](https://cn.vuejs.org/v2/guide/reactivity.html)
 
 
