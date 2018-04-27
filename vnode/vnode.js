@@ -2,21 +2,21 @@
  * @name VNode 转化ast树上的虚拟节点
  * @param { object } ast [ast树]
  * @param { node } parent [父节点]
- * @param { object } data [vue实例数据列表]
+ * @param { object } vm [vue实例]
  */
 class VNode {
-  constructor(ast={}, parent, data){
+  constructor(ast={}, parent, vm){
     this.ast = ast;
     this.parent = parent;
     this.elm = document.createElement('div');
-    this.$data = data;
+    this.vm = vm;
     
     this.init();
   }
 
   init(){
     Object.keys(this.ast).forEach(key => {
-      new VDom(this.ast[key], this.elm, this.$data)
+      new VDom(this.ast[key], this.elm, this.vm)
     })
     this.parent.innerHTML = this.elm.innerHTML;
   }
@@ -24,14 +24,14 @@ class VNode {
 }
 
 class VDom {
-  constructor(options, parent, data){
+  constructor(options, parent, vm){
     this.attribs = options.attribs ? options.attribs : '';
     this.type = options.type ? options.type : '';
     this.name = options.name ? options.name : '';
     this.data = options.data ? options.data : '';
     this.children = options.children ? options.children : '';
     this.parent = parent;
-    this.$data = data;
+    this.vm = vm;
     this.init();
   }
 
@@ -82,7 +82,7 @@ class VDom {
   }
 
   createChildren(child, vnode){
-    new VDom(child, vnode, this.$data);
+    new VDom(child, vnode, this.vm);
   }
 
   appendChildren(vnode){
@@ -105,8 +105,8 @@ class VDom {
       this.parent.appendChild(vnode);
     }else {
       let text = null;
-      if(this.$data[delBrackets.trim()]){
-        text = this.$data[delBrackets.trim()];
+      if(this.vm[delBrackets.trim()]){
+        text = this.vm[delBrackets.trim()];
       }else {
         throw(new Error('未发现此数据属性'));
       }
@@ -120,7 +120,7 @@ class VDom {
     this.parent.appendChild(vnode);
   }
 
-  loopObj(target, newData=this.$data){
+  loopObj(target, newData=this.vm){
     if(!Array.isArray(target)){
       throw(new Error('数据类型错误'));
     }

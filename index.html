@@ -11,12 +11,18 @@
     <ul>
       <li id="test">{{ name }}</li>
       <li class="hahaha">{{desc}}</li>
-      <li>staticNode</li>
-      <li>}} nothing to do at this node {{</li>
+      <li v-onclick="test">staticNode</li>
+      <li @click="test">}} nothing to do at this node {{</li>
       <li>{{ obj.item }}</li>
+      <li>{{nameToUppercase}}</li>
     </ul>
   </div>
   
+  <!-- 观察者模式 -->
+  <script src="./observer/dep.js"></script>
+  <script src="./observer/watch.js"></script>
+  <script src="./observer/index.js"></script>
+  <!-- VNode虚拟节点渲染机制 -->
   <script src="./vnode/bundle.js"></script>
   <script src="./vnode/vnode.js"></script>
   <script src="./vnode/index.js"></script>
@@ -30,6 +36,11 @@
           item: 'this is an item in obj'
         }
       },
+      computed: {
+        nameToUppercase: function(){
+          return this.name.toUpperCase();
+        }
+      }
       // 生命周期lifecycle beforeCreate created beforeMount mounted beforeUpdate updated beforeDestroy destroyed
       // 监听watch
       // 计算computed
