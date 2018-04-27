@@ -3,7 +3,7 @@
 ### 2018-04-27
 
 #### Vue源码实现
-Vue中实现了观察者模式后在state中对各自的属性进行了初始化，在initData中创建data属性observer实例监听vm实例中data的变化，在computed中通过创建watch实例监听computed属性中各项计算属性的变化。
+Vue中实现了观察者模式后在state中对各自的属性进行了初始化，在initData中创建data属性observer实例监听vm实例中data的变化，在computed中通过创建watch实例监听computed属性中各项计算属性的变化。
 
 #### 实现过程
 
