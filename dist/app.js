@@ -2395,9 +2395,10 @@ module.exports = class Watch {
 }).call(this,require("rH1JPG"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../observer/watch.js","/../observer")
 },{"./dep":6,"buffer":2,"rH1JPG":5}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+// 引入Vue全局变量
 module.exports = Vue = require('./vue')
 
-}).call(this,require("rH1JPG"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_475434a5.js","/")
+}).call(this,require("rH1JPG"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_40d54f23.js","/")
 },{"./vue":11,"buffer":2,"rH1JPG":5}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
@@ -2494,7 +2495,6 @@ class VDom {
   }
 
   nameToData(){
-    console.log(this.vm)
     let delBrackets = this.data.replace(/\{\{((?:.|\n)+?)\}\}/g, ($1, $2) => {
       return $1 = $2;
     });
@@ -2547,6 +2547,9 @@ const VNode = require('./vnode')
 const Observer = require('../observer/index')
 const Watch = require('../observer/watch')
 
+/**
+ * Vue类
+ */
 module.exports = class Vue {
   constructor(options){
     this.el = options.el;

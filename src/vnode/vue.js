@@ -3,6 +3,9 @@ const VNode = require('./vnode')
 const Observer = require('../observer/index')
 const Watch = require('../observer/watch')
 
+/**
+ * Vue类
+ */
 module.exports = class Vue {
   constructor(options){
     this.el = options.el;

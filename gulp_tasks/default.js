@@ -1,5 +1,5 @@
 const gulp = require('gulp');
 
-gulp.task('default', ['browserify'], () => {
-  console.info('task ran, good luck');
+gulp.task('default', ['watchingHTML', 'watchingAPP', 'watchingSRC'], () => {
+  console.info('watching task running, good luck');
 })

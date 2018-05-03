@@ -92,7 +92,6 @@ class VDom {
   }
 
   nameToData(){
-    console.log(this.vm)
     let delBrackets = this.data.replace(/\{\{((?:.|\n)+?)\}\}/g, ($1, $2) => {
       return $1 = $2;
     });
