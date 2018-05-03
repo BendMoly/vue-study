@@ -29,8 +29,6 @@ module.exports = class Vue {
     let handler = new htmlparser.DefaultHandler(function(err){}, { verbose: false, ignoreWhitespace: true });
     let parser = new htmlparser.Parser(handler);
     parser.parseComplete(element.innerHTML);
-    console.log(this);
-    console.log(handler.dom);
     this.render(handler.dom);
   }
 
@@ -63,7 +61,6 @@ module.exports = class Vue {
       )
       this.proxyComputed(key);
     })
-    console.log(_watch);
   }
 
   proxyComputed(key){
