@@ -38,5 +38,65 @@ MVVM模式主要关注到的点在于以下要素：
 
 ---
 
+#### 生命周期lifecycle
+
+
+![image](https://github.com/BendMoly/vue-study/raw/master/static/lifecycle.png)  
+
+说起Vue的生命周期就不得不将这张图祭出来。Vue的生命周期有```created/mounted/updated/destroyed```以及其对应的```before```hook。在整个生命周期中，```callhook```方法能帮我们看到整个周期流程。
+
+###### src/core/instance/lifecycle.js
+```
+export function callHook (vm: Component, hook: string) {
+  pushTarget()
+  const handlers = vm.$options[hook]
+  if (handlers) {
+    for (let i = 0, j = handlers.length; i < j; i++) {
+      try {
+        handlers[i].call(vm)
+      } catch (e) {
+        handleError(e, vm, `${hook} hook`)
+      }
+    }
+  }
+  if (vm._hasHookEvent) {
+    vm.$emit('hook:' + hook)
+  }
+  popTarget()
+}
+```
+
+
+在一个Vue类实例化时，在初始化中首先进行的就是```beforeCreate/created```操作。
+
+###### src/core/instance/init.js
+```
+// ...
+callHook(vm, 'beforeCreate')
+initInjections(vm) // resolve injections before data/props
+initState(vm)
+initProvide(vm) // resolve provide after data/props
+callHook(vm, 'created')
+```
+之后依次对应执行其他周期。在所有周期hook的进行中，```destroyed```相关的都是在实例被销毁时执行。实例初始化完成后整个实例中vnode都会被观察者模式进行监听，这点在上节有提及过。改变view层的视图或model层的数据都会出发patch对虚拟节点进行更新，以销毁为例，在整个vnode树中所生成的子组件都存放在根实例的```$children```中，在patch的过程中如果vnode中的children减少，这个时候就会唤醒```invokeDestroyHook```方法.
+```
+function invokeDestroyHook (vnode) {
+  var i, j;
+  var data = vnode.data;
+  if (isDef(data)) {
+    if (isDef(i = data.hook) && isDef(i = i.destroy)) { i(vnode); }
+    for (i = 0; i < cbs.destroy.length; ++i) { cbs.destroy[i](vnode); }
+  }
+  if (isDef(i = vnode.children)) {
+    for (j = 0; j < vnode.children.length; ++j) {
+      invokeDestroyHook(vnode.children[j]);
+    }
+  }
+}
+```
+究其所有主要还是由整个vnode的更新patch相关。介于此我们就可以根据业务需求在不同的周期钩子中实现功能。
+
+---
+
 #### 参考链接
 [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)

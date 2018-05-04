@@ -20,3 +20,11 @@ gulp.task('watchingAPP', () => {
 gulp.task('watchingSRC', () => {
   gulp.watch('src/*/*.js', ['browserify']);
 })
+
+gulp.task('watchingVUE', () => {
+  livereload.listen()
+  gulp.watch('dist/vue.js', (event) => {
+    livereload.changed(event.path)
+    console.log('vue reload finished');
+  })
+})

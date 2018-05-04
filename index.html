@@ -11,14 +11,16 @@
     <ul>
       <li id="test">{{ name }}</li>
       <li class="hahaha">{{desc}}</li>
-      <li v-onclick="test">staticNode</li>
-      <li @click="test">}} nothing to do at this node {{</li>
+      <li>staticNode</li>
+      <li>}} nothing to do at this node {{</li>
       <li>{{ obj.item }}</li>
       <li>{{nameToUppercase}}</li>
     </ul>
+    <test v-if="testHide"></test>
   </div>
 
-  <script src="/dist/app.js"></script>
+  <!-- <script src="/dist/app.js"></script> -->
+  <script src="/dist/vue.js"></script>
   <script>
     const vm = new Vue({
       el: '#app',
@@ -27,18 +29,30 @@
         desc: 'hello world',
         obj: {
           item: 'this is an item in obj'
+        },
+        testHide: true
+      },
+      components: {
+        test: {
+          template: '<div>test component</div>'
         }
       },
       computed: {
         nameToUppercase: function(){
           return this.name.toUpperCase();
         }
+      },
+      mounted(){
+        setTimeout(() => {
+          this.testHide = false;
+        }, 5000)
       }
       // 生命周期lifecycle beforeCreate created beforeMount mounted beforeUpdate updated beforeDestroy destroyed
       // 监听watch
       // 计算computed
       // 方法methods
     })
+    console.log(vm);
   </script>
 </body>
 </html>
